@@ -13,7 +13,7 @@ import (
 func main() {
 	ctx := context.Background()
 
-	ctx1, c1 := context.WithCancel(ctx)
+	ctx1, _ := context.WithCancel(ctx)
 	go func() {
 		fmt.Println("g1 start")
 		<-ctx1.Done()
@@ -35,7 +35,7 @@ func main() {
 	}()
 
 	time.Sleep(1e9)
-	c1()
+	//c1()
 	time.Sleep(5 * time.Second)
 	c3()
 
