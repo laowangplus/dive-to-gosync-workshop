@@ -14,14 +14,14 @@ func main() {
 		fmt.Println("g1 done, err:", ctx1.Err())
 	}()
 
-	ctx2, c2 := context.WithDeadline(ctx1, time.Now().Add(time.Hour))
+	ctx2, c2 := context.WithDeadline(ctx1, time.Now().Add(time.Second)) //设置超时时间
 	go func() {
 		fmt.Println("g2 start")
 		<-ctx2.Done()
 		fmt.Println("g2 done, err:", ctx2.Err())
 	}()
 
-	time.Sleep(time.Second)
+	time.Sleep(2*time.Second)
 	c1()
 
 	time.Sleep(10 * time.Second)
